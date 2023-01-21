@@ -49,4 +49,12 @@ app.post("/login", async (req, res) => {
 	}
 });
 
+app.post("/getProfile", async (req, res) => {
+	const { email } = req.body;
+	const user = await UserModel.findOne({ email });
+	if (user) {
+		res.status(200).send({ email: user.email, name: user.name });
+	}
+});
+
 module.exports = app;
