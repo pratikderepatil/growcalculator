@@ -8,6 +8,7 @@ const bodyparser = require("body-parser");
 const PORT = process.env.PORT || 8080;
 const connect = require("./config/db");
 const userRouter = require("./routes/user.router");
+const calculateRouter = require("./routes/calculate.router");
 
 const app = express();
 app.use(express.json());
@@ -18,6 +19,7 @@ app.use(bodyparser.json());
 mongoose.set("strictQuery", false);
 
 app.use("/user", userRouter);
+app.use("/calculate", calculateRouter);
 
 app.get("/", (req, res) => {
 	res.send("Grow Calculator");
